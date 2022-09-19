@@ -1,3 +1,13 @@
+# Carson
+
+in the folder that has docker-compose.yaml
+
+`sudo docker compose up -d`
+
+`sudo docker compose down`
+
+# From Azure
+
 ---
 page_type: sample
 languages:
