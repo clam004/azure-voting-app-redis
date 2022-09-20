@@ -27,6 +27,23 @@ az aks create \
     --attach-acr <acrName>
 ```
 
+```
+az aks create \
+    --resource-group faraResourceGroup \
+    --name faraAKSCluster \
+    --node-count 2 \
+    --generate-ssh-keys \
+    --attach-acr caredotcoach
+```
+
+you may need to remove the `--attach-acr <acrName>` portion if you dont have permission
+
+```
+az aks get-credentials --resource-group faraResourceGroup --name faraAKSCluster
+```
+
+`kubectl apply -f azure-vote-all-in-one-redis.yaml`
+
 az aks get-credentials --resource-group faraResourceGroup --name faraAKSCluster
 
 # From Azure
