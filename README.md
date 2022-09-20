@@ -44,7 +44,15 @@ az aks get-credentials --resource-group faraResourceGroup --name faraAKSCluster
 
 `kubectl apply -f azure-vote-all-in-one-redis.yaml`
 
-az aks get-credentials --resource-group faraResourceGroup --name faraAKSCluster
+`kubectl get service azure-vote-front --watch`
+
+```
+carson@fara-vm2:/fara/azure-voting-app-redis$ kubectl get service azure-vote-front --watch
+NAME               TYPE           CLUSTER-IP     EXTERNAL-IP     PORT(S)        AGE
+azure-vote-front   LoadBalancer   10.0.212.157   20.252.80.191   80:30970/TCP   6m
+```
+
+copy `20.252.80.191` and paste into your browser. You should see the app running. 
 
 # From Azure
 
