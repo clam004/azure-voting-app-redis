@@ -6,6 +6,16 @@ in the folder that has docker-compose.yaml
 
 `sudo docker compose down`
 
+`sudo docker tag mcr.microsoft.com/azuredocs/azure-vote-front:v1 <acrLoginServer>/azure-vote-front:v1`
+
+where `<acrLoginServer>` = `*.azurecr.io`
+
+`az acr login --name <acrName>`
+
+where `<acrName>` = `*`
+
+`sudo docker push <acrLoginServer>/azure-vote-front:v1`
+
 # From Azure
 
 ---
