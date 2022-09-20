@@ -6,15 +6,28 @@ in the folder that has docker-compose.yaml
 
 `sudo docker compose down`
 
-`sudo docker tag mcr.microsoft.com/azuredocs/azure-vote-front:v1 <acrLoginServer>/azure-vote-front:v1`
-
-where `<acrLoginServer>` = `*.azurecr.io`
-
 `az acr login --name <acrName>`
 
 where `<acrName>` = `*`
 
+`az group create --name <yourResourceGroup> --location westus2`
+
+`sudo docker tag mcr.microsoft.com/azuredocs/azure-vote-front:v1 <acrLoginServer>/azure-vote-front:v1`
+
+where `<acrLoginServer>` = `*.azurecr.io`
+
 `sudo docker push <acrLoginServer>/azure-vote-front:v1`
+
+```
+az aks create \
+    --resource-group yourResourceGroup \
+    --name yourAKSCluster \
+    --node-count 2 \
+    --generate-ssh-keys \
+    --attach-acr <acrName>
+```
+
+az aks get-credentials --resource-group faraResourceGroup --name faraAKSCluster
 
 # From Azure
 
