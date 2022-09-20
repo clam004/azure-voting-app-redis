@@ -8,7 +8,7 @@ in the folder that has docker-compose.yaml
 
 `az acr login --name <acrName>`
 
-where `<acrName>` = `*`
+where `<acrName>` = `*` = `caredotcoach`
 
 `az group create --name <yourResourceGroup> --location westus2`
 
@@ -53,6 +53,26 @@ azure-vote-front   LoadBalancer   10.0.212.157   20.252.80.191   80:30970/TCP   
 ```
 
 copy `20.252.80.191` and paste into your browser. You should see the app running. 
+
+To delete a specific deployment
+
+```
+carson@fara-vm2:/fara/ml_fara$ kubectl get deployments --all-namespaces
+NAMESPACE     NAME                 READY   UP-TO-DATE   AVAILABLE   AGE
+default       azure-vote-back      1/1     1            1           114m
+default       azure-vote-front     1/1     1            1           114m
+default       convo-rec            1/1     1            1           97m
+default       convo-rec-v2         1/1     1            1           38m
+default       convo-rec2           1/1     1            1           42m
+kube-system   coredns              2/2     2            2           5h14m
+kube-system   coredns-autoscaler   1/1     1            1           5h14m
+kube-system   konnectivity-agent   2/2     2            2           5h14m
+kube-system   metrics-server       2/2     2            2           5h14m
+```
+
+Where NAMESPACE is the namespace it's in, and DEPLOYMENT is the NAME of the deployment. If NAMESPACE is default, leave off the -n option altogether.
+
+`kubectl delete deployment convo-rec2`
 
 # From Azure
 
