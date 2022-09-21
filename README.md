@@ -1,4 +1,4 @@
-# Carson
+# Kubernetes AutoScaling using an AKS Cluster
 
 in the folder that has docker-compose.yaml
 
@@ -8,7 +8,7 @@ in the folder that has docker-compose.yaml
 
 `az acr login --name <acrName>`
 
-where `<acrName>` = `*` = `caredotcoach`
+where `<acrName>` = `*` 
 
 `az group create --name <yourResourceGroup> --location westus2`
 
@@ -25,15 +25,6 @@ az aks create \
     --node-count 2 \
     --generate-ssh-keys \
     --attach-acr <acrName>
-```
-
-```
-az aks create \
-    --resource-group faraResourceGroup \
-    --name faraAKSCluster \
-    --node-count 2 \
-    --generate-ssh-keys \
-    --attach-acr caredotcoach
 ```
 
 you may need to remove the `--attach-acr <acrName>` portion if you dont have permission
@@ -53,6 +44,10 @@ azure-vote-front   LoadBalancer   10.0.212.157   20.252.80.191   80:30970/TCP   
 ```
 
 copy `20.252.80.191` and paste into your browser. You should see the app running. 
+
+To autoscale the number of pods:
+
+`kubectl autoscale deployment azure-vote-front --cpu-percent=50 --min=3 --max=10`
 
 To delete a specific deployment
 
